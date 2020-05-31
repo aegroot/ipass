@@ -1,10 +1,16 @@
 package server;
 
 
+import domain.AssortimentProduct;
 import domain.Klant;
 import domain.Product;
+import domain.Winkelwagen;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -16,9 +22,25 @@ public class TableServletWinkelWagen {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 public Response getitems(){
-       Klant online= Klant.getOnline();
-       ArrayList<Product>products= new ArrayList<>();
+        JsonArrayBuilder arrayBuilder= Json.createArrayBuilder();
+        Klant online= Klant.getOnline();
+        Winkelwagen wagen=online.getWinkelwagen();
+        for (AssortimentProduct aproduct:wagen.getProducten()) {
+            JsonObjectBuilder objectBuilder=Json.createObjectBuilder();
+            Product product=aproduct.getProduct();
+            objectBuilder.add("omschrijving",product.getOmschrijving());
+            objectBuilder.add("categorie",product.getCategorie());
+            objectBuilder.add("land v herkomst",product.getLandvherkomst());
+            objectBuilder.add("prijs",aproduct. berekenprijs());
+            arrayBuilder.add(objectBuilder);
+        }
 
-        return javax.ws.rs.core.Response.ok(online).build();
+
+        return javax.ws.rs.core.Response.ok(arrayBuilder).build();
+    }
+    @Path("{item}")
+    @POST
+    public Response additem(){
+        return null;
     }
 }

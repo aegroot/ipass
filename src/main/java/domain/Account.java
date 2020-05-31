@@ -13,8 +13,13 @@ public abstract class Account {
         accounts.add(this);
     }
 
+    public String getUsername() {
+        return username;
+    }
 
-
+    public String getPassword() {
+        return password;
+    }
 
     public void setUsername(String username) {
         this.username = username;

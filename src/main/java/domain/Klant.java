@@ -7,14 +7,9 @@ public class Klant extends Account{
     private String naam;
     ArrayList<Product> products;
     private static Klant online;
+    private Winkelwagen winkelwagen;
+    private static ArrayList<Klant>klants;
 
-    public static Klant getOnline() {
-        return online;
-    }
-
-    public static void setOnline(Klant online) {
-        Klant.online = online;
-    }
 
     public void minusBudget(double prijs){
         if ((prijs<=budget)&&(prijs>=0)){
@@ -23,13 +18,28 @@ public class Klant extends Account{
 
     }
 
-    public Klant(double budget,String naam,String username,String password) {
+    public Klant(String naam,String username,String password) {
         super(username,password);
-        this.budget = budget;
         this.naam=naam;
 
     }
 
+
+
+
+    public static Klant getbyaccount(String username,String password){
+        for (Klant winkel:klants) {
+            if((winkel.getUsername()==username)&&(winkel.password==password)){
+                return winkel;
+            }
+        }
+        return null;
+    }
+    public void addProduct(Product product){products.add(product);}
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
     public double getBudget() {
         return budget;
     }
@@ -37,9 +47,19 @@ public class Klant extends Account{
     public String getNaam() {
         return naam;
     }
-    public void addProduct(Product product){products.add(product);}
+    public Winkelwagen getWinkelwagen() {
+        return winkelwagen;
+    }
 
-    public ArrayList<Product> getProducts() {
-        return products;
+    public void setWinkelwagen(Winkelwagen winkelwagen) {
+        this.winkelwagen = winkelwagen;
+    }
+
+    public static Klant getOnline() {
+        return online;
+    }
+
+    public static void setOnline(Klant online) {
+        Klant.online = online;
     }
 }

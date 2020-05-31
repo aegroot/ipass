@@ -9,7 +9,11 @@ public class Product {
     private double startprijs;
     private static ArrayList<Product> products=new ArrayList<>();
 
-    public Product(String omschrijving,String categorie,String landvherkomst,double startprijs) {
+    public double getStartprijs() {
+        return startprijs;
+    }
+
+    public Product(String omschrijving, String categorie, String landvherkomst, double startprijs) {
         this.categorie=categorie;
         this.omschrijving=omschrijving;
         this.landvherkomst=landvherkomst;

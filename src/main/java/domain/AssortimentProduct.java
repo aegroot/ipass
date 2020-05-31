@@ -2,29 +2,31 @@ package domain;
 
 public class AssortimentProduct {
     private Product product;
-    private double nieuwprijs;
+    private int id;
+    private double kilo;
+    private  double nieuwprijs=berekenprijs();
+
+    public double berekenprijs(){
 
 
-    public AssortimentProduct(double nieuwprijs,Product product) {
-        this.nieuwprijs = nieuwprijs;
-        this.product=product;
+        return kilo*product.getStartprijs();
     }
 
-    public void alterPrijspercentage(int percentage){nieuwprijs=nieuwprijs*percentage;}
+
+    public AssortimentProduct(Product product,double kilo) {
+        this.product=product;
+        this.kilo=kilo;
+    }
+
 
     public void setProduct(Product product) {
         this.product = product;
     }
 
-    public double getNieuwprijs() {
-        return nieuwprijs;
-    }
+
 
     public Product getProduct() {
         return product;
     }
 
-    public void setNieuwprijs(double nieuwprijs) {
-        this.nieuwprijs = nieuwprijs;
-    }
 }

@@ -9,18 +9,14 @@ class WinkelTest {
 
     @Test
     void plusBudget() {
-        Winkel henk=new Winkel("henk", 1000);
-        double init=henk.getBudget();
-        henk.plusBudget(100);
-        assertNotEquals(init,henk.getBudget());
+        Winkel henk=new Winkel("henk", "test","1","test");
+
+
     }
 
     @Test
     void plusbudgetminus(){
-        Winkel henk=new Winkel("henk", 1000);
-        double init=henk.getBudget();
-        henk.plusBudget(-100);
-        assertEquals(init,henk.getBudget());
+        Winkel henk=new Winkel("henk", "henk","1","test");
 
     }
 }
