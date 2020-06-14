@@ -4,17 +4,19 @@ public class AssortimentProduct {
     private Product product;
     private int id;
     private double kilo;
-    private  double nieuwprijs=berekenprijs();
+    private double nieuwprijs;
 
     public double berekenprijs(){
 
 
+        assert product != null;
         return kilo*product.getStartprijs();
     }
 
 
-    public AssortimentProduct(Product product,double kilo) {
+    public AssortimentProduct(Product product, int id, double kilo) {
         this.product=product;
+        this.id = id;
         this.kilo=kilo;
     }
 

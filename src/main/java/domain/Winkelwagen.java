@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Winkelwagen {
     private Klant klant;
-    private ArrayList<AssortimentProduct> producten;
+    private ArrayList<AssortimentProduct> producten=new ArrayList<>();
     private int id;
 
     public ArrayList<AssortimentProduct> getProducten() {
@@ -23,5 +23,7 @@ public class Winkelwagen {
         if (producten.contains(product)){
         product=null;}
    }
+
+
    public void addproduct(AssortimentProduct product){producten.add(product);}
 }

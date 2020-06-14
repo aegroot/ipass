@@ -27,3 +27,10 @@ td:nth-child(even){
 #hr1,#hr2{
     color: black;
 }
+div{margin: 100px;
+padding: 100px;
+    background-color: burlywood;
+}
+#loginbox {
+    align-content: center;
+}

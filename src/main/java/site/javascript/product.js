@@ -20,16 +20,24 @@ function product(omschrijving,categorie,landvherkomst,prijs) {
 function filltable(){
     var list=fetch("restervices/winkel").then(response=Promise.all([response.status, response.json()]))
 
-    for(var obj in list){
-        row=document.createElement("tr");
+    let textnode1;
+    let textnode2;
+    let textnode4;
+    let textnode3;
+    let cell1;
+    let cell2;
+    let cell3;
+    let cell4;
+    for (var obj in list) {
+        row = document.createElement("tr");
         cell1 = document.createElement("td");
         cell2 = document.createElement("td");
         cell3 = document.createElement("td");
         cell4 = document.createElement("td");
-        textnode1=document.createTextNode(obj.omschrijving);
-        textnode2=document.createTextNode(obj.categorie);
-        textnode3=document.createTextNode(obj.landvherkomst);
-        textnode4=document.createTextNode(obj.prijs);
+        textnode1 = document.createTextNode(obj.omschrijving);
+        textnode2 = document.createTextNode(obj.categorie);
+        textnode3 = document.createTextNode(obj.landvherkomst);
+        textnode4 = document.createTextNode(obj.prijs);
         cell1.appendChild(textnode1);
         cell2.appendChild(textnode2);
         cell3.appendChild(textnode3);
@@ -45,16 +53,25 @@ function filltable(){
 function filltablewinkel() {
     var list=fetch("restervices/winkel").then(response=Promise.all([response.status, response.json()]))
 
-    for(var obj in list){
-        row=document.createElement("tr");
+    let textnode1;
+    let textnode2;
+    let textnode4;
+    let textnode3;
+    let cell1;
+    let cell2;
+    let cell3;
+    let cell4;
+
+    for (var obj in list) {
+        row = document.createElement("tr");
         cell1 = document.createElement("td");
         cell2 = document.createElement("td");
         cell3 = document.createElement("td");
         cell4 = document.createElement("td");
-        textnode1=document.createTextNode(obj.omschrijving);
-        textnode2=document.createTextNode(obj.categorie);
-        textnode3=document.createTextNode(obj.landvherkomst);
-        textnode4=document.createTextNode(obj.prijs);
+        textnode1 = document.createTextNode(obj.omschrijving);
+        textnode2 = document.createTextNode(obj.categorie);
+        textnode3 = document.createTextNode(obj.landvherkomst);
+        textnode4 = document.createTextNode(obj.prijs);
         cell1.appendChild(textnode1);
         cell2.appendChild(textnode2);
         cell3.appendChild(textnode3);
@@ -66,6 +83,14 @@ function filltablewinkel() {
 }
 function filltableklant(){
     var list=fetch("restervices/winkelwagen").then(response=Promise.all([response.status, response.json()]))
+    let textnode1;
+    let textnode2;
+    let textnode4;
+    let textnode3;
+    let cell1;
+    let cell2;
+    let cell3;
+    let cell4;
     for(var obj in list){
         row=document.createElement("tr");
         cell1 = document.createElement("td");
@@ -108,7 +133,7 @@ function validate() {
 
 }
 function addcustomer() {
-    var formData=new FormData(document.querySelector("#register"));
+    const formData = new FormData(document.querySelector("#register"));
     var encData=new URLSearchParams(formData.entries());
     fetch("restservices/register" ,{method:"PUT",body:encData})
 

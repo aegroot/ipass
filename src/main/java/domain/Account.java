@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Account {
     public String username;
     public String password;
-    static ArrayList<Account>accounts;
+    private static ArrayList<Account>accounts=new ArrayList<>();
 
     public Account(String username, String password) {
         this.username=username;

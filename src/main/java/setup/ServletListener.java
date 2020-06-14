@@ -17,8 +17,8 @@ public class ServletListener implements ServletContextListener {
         Klant k1=new Klant("jos", "jos@test.nl", "test");
         Winkelwagen w1=new Winkelwagen(1);
         k1.setWinkelwagen(w1);
-        AssortimentProduct a1=new AssortimentProduct(p1,0.5);
-        AssortimentProduct a2=new AssortimentProduct(p2,0.25);
+        AssortimentProduct a1=new AssortimentProduct(p1, 1, 0.5);
+        AssortimentProduct a2=new AssortimentProduct(p2, 2, 0.25);
         w1.addproduct(a1);
         w1.addproduct(a2);
         Klant.setOnline(k1);
