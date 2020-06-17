@@ -24,6 +24,16 @@ public Response getitems(){
         JsonArrayBuilder arrayBuilder= Json.createArrayBuilder();
         Klant online= Klant.getOnline();
         Winkelwagen wagen=online.getWinkelwagen();
+        for (int i = 0; i <10 ; i++) {
+            JsonObjectBuilder objectBuilder=Json.createObjectBuilder();
+            objectBuilder.add("omschrijving",Math.random());
+            objectBuilder.add("categorie",Math.random());
+            objectBuilder.add("land v herkomst",Math.random());
+            objectBuilder.add("prijs",Math.random());
+            arrayBuilder.add(objectBuilder);}
+
+            /*
+        }
         for (AssortimentProduct aproduct:wagen.getProducten()) {
             JsonObjectBuilder objectBuilder=Json.createObjectBuilder();
             Product product=aproduct.getProduct();
@@ -33,6 +43,8 @@ public Response getitems(){
             objectBuilder.add("prijs",aproduct. berekenprijs());
             arrayBuilder.add(objectBuilder);
         }
+
+             */
 
 
         return javax.ws.rs.core.Response.ok(arrayBuilder).build();
