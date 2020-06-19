@@ -17,7 +17,7 @@ function product(omschrijving,categorie,landvherkomst,prijs) {
         }}
 
 async function filltable() {
-    const list = await fetch("restervices/winkel", {method: "GET"}).then(response => Promise.all([response.status, response.json()])).then(function (data) {
+    const list = await fetch("restervices/winkel", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
         let textnode1;
         let textnode2;
         let textnode4;
@@ -26,7 +26,7 @@ async function filltable() {
         let cell2;
         let cell3;
         let cell4;
-        let products = data.results;
+        let products=list.json();
         return products.map(function (obj) {
             row = document.createElement("tr");
             cell1 = document.createElement("td");
@@ -46,17 +46,15 @@ async function filltable() {
             row.appendChild(cell1);
             row.appendChild(cell2);
             document.querySelector("#tablewinkel").append(row);
-        })
-
-
     })
+
 }
 
 
 
 async function filltablewinkel() {
     var list = await fetch("restervices/winkel", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
-        .then(function (data) {
+
             let textnode1;
             let textnode2;
             let textnode4;
@@ -65,7 +63,7 @@ async function filltablewinkel() {
             let cell2;
             let cell3;
             let cell4;
-            let products = data.results;
+            let products=list.json();
             return products.map(function (obj) {
                 row = document.createElement("tr");
                 cell1 = document.createElement("td");
@@ -85,7 +83,7 @@ async function filltablewinkel() {
                 row.appendChild(cell1);
                 row.appendChild(cell2);
                 document.querySelector("#tablewinkel").append(row);
-            })
+
 
 
 
@@ -96,7 +94,6 @@ async function filltablewinkel() {
 }
 async function filltableklant() {
     var list = await fetch("restervices/winkelwagen", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
-        .then(function (data) {
         let textnode1;
         let textnode2;
         let textnode4;
@@ -105,7 +102,7 @@ async function filltableklant() {
         let cell2;
         let cell3;
         let cell4;
-        let products = data.results;
+        let products=await list.json();
         return products.map(function (obj) {
             row = document.createElement("tr");
             cell1 = document.createElement("td");
@@ -125,7 +122,6 @@ async function filltableklant() {
             row.appendChild(cell1);
             row.appendChild(cell2);
             document.querySelector("#tablewinkel").append(row);
-        })
     })
 }
 

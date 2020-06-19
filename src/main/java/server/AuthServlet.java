@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class AuthServlet {
 
 
-    public String cretaeToken(String username,String role){
+    public String createToken(String username,String role){
         final Key key= MacProvider.generateKey();
         Calendar expiration=Calendar.getInstance();
         expiration.add(Calendar.MINUTE,30);
@@ -57,7 +57,5 @@ public class AuthServlet {
             return Response.ok(objectBuilder).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
-
-
     }
 }

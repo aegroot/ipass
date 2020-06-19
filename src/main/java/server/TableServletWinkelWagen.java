@@ -26,10 +26,10 @@ public Response getitems(){
         Winkelwagen wagen=online.getWinkelwagen();
         for (int i = 0; i <10 ; i++) {
             JsonObjectBuilder objectBuilder=Json.createObjectBuilder();
-            objectBuilder.add("omschrijving",Math.random());
-            objectBuilder.add("categorie",Math.random());
-            objectBuilder.add("land v herkomst",Math.random());
-            objectBuilder.add("prijs",Math.random());
+            objectBuilder.add("omschrijving","o");
+            objectBuilder.add("categorie","c");
+            objectBuilder.add("land v herkomst","l");
+            objectBuilder.add("prijs","p");
             arrayBuilder.add(objectBuilder);}
 
             /*
