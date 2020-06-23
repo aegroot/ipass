@@ -44,16 +44,19 @@ public class AuthServlet {
         JsonObjectBuilder objectBuilder= Json.createObjectBuilder();
         String rol;
 
+
         if (winkelb) {
             Winkel.setWinkelonline(Winkel.getbyaccount(uN, pass));
             objectBuilder.add("naam","winkel");
             rol="winkel";
+            String token=createToken(uN,rol);
             return Response.ok(objectBuilder).build();
         }
         if (klantb) {
             rol="klant";
             Klant.setOnline(Klant.getbyaccount(uN, pass));
             objectBuilder.add("naam","klant");
+            String token=createToken(uN,rol);
             return Response.ok(objectBuilder).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();

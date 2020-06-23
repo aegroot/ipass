@@ -16,113 +16,53 @@ function product(omschrijving,categorie,landvherkomst,prijs) {
             return [naam,password];
         }}
 
-async function filltable() {
-    const list = await fetch("restervices/winkel", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
-        let textnode1;
-        let textnode2;
-        let textnode4;
-        let textnode3;
-        let cell1;
-        let cell2;
-        let cell3;
-        let cell4;
-        let products=list.json();
-        return products.map(function (obj) {
-            row = document.createElement("tr");
-            cell1 = document.createElement("td");
-            cell2 = document.createElement("td");
-            cell3 = document.createElement("td");
-            cell4 = document.createElement("td");
-
-            textnode1 = document.createTextNode(obj.omschrijving.toString);
-            textnode2 = document.createTextNode(obj.categorie.toString);
-            textnode3 = document.createTextNode(obj.landvherkomst.toString);
-            textnode4 = document.createTextNode(obj.prijs.toString);
-
-            cell1.appendChild(textnode1);
-            cell2.appendChild(textnode2);
-            cell3.appendChild(textnode3);
-            cell4.appendChild(textnode4);
-            row.appendChild(cell1);
-            row.appendChild(cell2);
-            document.querySelector("#tablewinkel").append(row);
-    })
-
-}
-
-
-
-async function filltablewinkel() {
-    var list = await fetch("restervices/winkel", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
-
+        function filltable(data){
+            const table=document.querySelector("table")
+            let row;
             let textnode1;
             let textnode2;
-            let textnode4;
             let textnode3;
+            let textnode4;
             let cell1;
             let cell2;
             let cell3;
             let cell4;
-            let products=list.json();
-            return products.map(function (obj) {
+            for (let key of data) {
+                row=table.insertRow()
+                cell1=row.insertCell();
+                cell2=row.insertCell();
+                cell3=row.insertCell();
+                cell4=row.insertCell();
                 row = document.createElement("tr");
-                cell1 = document.createElement("td");
-                cell2 = document.createElement("td");
-                cell3 = document.createElement("td");
-                cell4 = document.createElement("td");
 
-                textnode1 = document.createTextNode(obj.omschrijving.toString);
-                textnode2 = document.createTextNode(obj.categorie.toString);
-                textnode3 = document.createTextNode(obj.landvherkomst.toString);
-                textnode4 = document.createTextNode(obj.prijs.toString);
+                textnode1 = document.createTextNode(key.omschrijving.toString);
+                textnode2 = document.createTextNode(key.categorie.toString);
+                textnode3 = document.createTextNode(key.landvherkomst.toString);
+                textnode4 = document.createTextNode(key.prijs.toString);
 
                 cell1.appendChild(textnode1);
                 cell2.appendChild(textnode2);
                 cell3.appendChild(textnode3);
                 cell4.appendChild(textnode4);
-                row.appendChild(cell1);
-                row.appendChild(cell2);
-                document.querySelector("#tablewinkel").append(row);
+                document.querySelector("table").append(row);
+            }
+        }
 
 
 
 
 
-
-        })
+async function filltablewinkel() {
+    var list = await fetch("restervices/winkel", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
+        .then(function (data) {
+            filltable(data)})
 
 }
 async function filltableklant() {
     var list = await fetch("restervices/winkelwagen", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
-        let textnode1;
-        let textnode2;
-        let textnode4;
-        let textnode3;
-        let cell1;
-        let cell2;
-        let cell3;
-        let cell4;
-        let products=await list.json();
-        return products.map(function (obj) {
-            row = document.createElement("tr");
-            cell1 = document.createElement("td");
-            cell2 = document.createElement("td");
-            cell3 = document.createElement("td");
-            cell4 = document.createElement("td");
-
-            textnode1 = document.createTextNode(obj.omschrijving.toString);
-            textnode2 = document.createTextNode(obj.categorie.toString);
-            textnode3 = document.createTextNode(obj.landvherkomst.toString);
-            textnode4 = document.createTextNode(obj.prijs.toString);
-
-            cell1.appendChild(textnode1);
-            cell2.appendChild(textnode2);
-            cell3.appendChild(textnode3);
-            cell4.appendChild(textnode4);
-            row.appendChild(cell1);
-            row.appendChild(cell2);
-            document.querySelector("#tablewinkel").append(row);
-    })
+        .then(function (data) {
+            filltable(data)
+        })
 }
 
 
