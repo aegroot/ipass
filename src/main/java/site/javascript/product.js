@@ -16,36 +16,37 @@ function product(omschrijving,categorie,landvherkomst,prijs) {
             return [naam,password];
         }}
 
-        function filltable(data){
-            const table=document.querySelector("table")
-            let row;
-            let textnode1;
-            let textnode2;
-            let textnode3;
-            let textnode4;
-            let cell1;
-            let cell2;
-            let cell3;
-            let cell4;
-            for (let key of data) {
-                row=table.insertRow()
-                cell1=row.insertCell();
-                cell2=row.insertCell();
-                cell3=row.insertCell();
-                cell4=row.insertCell();
-                row = document.createElement("tr");
-
-                textnode1 = document.createTextNode(key.omschrijving.toString);
-                textnode2 = document.createTextNode(key.categorie.toString);
-                textnode3 = document.createTextNode(key.landvherkomst.toString);
-                textnode4 = document.createTextNode(key.prijs.toString);
-
-                cell1.appendChild(textnode1);
-                cell2.appendChild(textnode2);
-                cell3.appendChild(textnode3);
-                cell4.appendChild(textnode4);
-                document.querySelector("table").append(row);
-            }
+        //wordt meerdere keren gebruikt
+function filltable(data){
+    const table=document.querySelector("table")
+    //init declaration
+    let row;
+    let textnode1;
+    let textnode2;
+    let textnode3;
+    let textnode4;
+    let cell1;
+    let cell2;
+    let cell3;
+    let cell4;
+    for (let key of data) {
+        //maakt een rij, koppelt er cellen aan,en vult het met data
+        row=table.insertRow()
+        cell1=row.insertCell();
+        cell2=row.insertCell();
+        cell3=row.insertCell();
+        cell4=row.insertCell();
+        row = document.createElement("tr");
+        textnode1 = document.createTextNode(key.omschrijving);
+        textnode2 = document.createTextNode(key.categorie);
+        textnode3 = document.createTextNode(key.landvherkomst);
+        textnode4 = document.createTextNode(key.prijs);
+        cell1.appendChild(textnode1);
+        cell2.appendChild(textnode2);
+        cell3.appendChild(textnode3);
+        cell4.appendChild(textnode4);
+        document.querySelector("table").append(row);
+    }
         }
 
 
