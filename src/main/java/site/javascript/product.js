@@ -29,23 +29,23 @@ function filltable(data){
     let cell2;
     let cell3;
     let cell4;
-    for (let key of data) {
+    for (var i = 0; i < data.length; i++) {
         //maakt een rij, koppelt er cellen aan,en vult het met data
         row=table.insertRow()
-        cell1=row.insertCell();
-        cell2=row.insertCell();
-        cell3=row.insertCell();
-        cell4=row.insertCell();
+        cell1=row.insertCell(0);
+        cell2=row.insertCell(1);
+        cell3=row.insertCell(2);
+        cell4=row.insertCell(3);
         row = document.createElement("tr");
-        textnode1 = document.createTextNode(key.omschrijving);
-        textnode2 = document.createTextNode(key.categorie);
-        textnode3 = document.createTextNode(key.landvherkomst);
-        textnode4 = document.createTextNode(key.prijs);
-        cell1.appendChild(textnode1);
-        cell2.appendChild(textnode2);
-        cell3.appendChild(textnode3);
-        cell4.appendChild(textnode4);
-        document.querySelector("table").append(row);
+        textnode1 = document.createTextNode(data[i].omschrijving);
+        textnode2 = document.createTextNode(data[i].categorie);
+        textnode3 = document.createTextNode(data[i].landvherkomst);
+        textnode4 = document.createTextNode(data[i].prijs);
+        cell1.innerHTML=key.omschrijving;
+        cell2.innerHTML=key.categorie;
+        cell3.innerHTML=key.landvherkomst;
+        cell4.innerHTML=key.prijs;
+        table.append(row);
     }
         }
 
@@ -63,6 +63,7 @@ async function filltableklant() {
     var list = await fetch("restervices/winkelwagen", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
         .then(function (data) {
             filltable(data)
+
         })
 }
 

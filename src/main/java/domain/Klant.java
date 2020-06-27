@@ -1,14 +1,28 @@
 package domain;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public class Klant extends Account{
+
+
     private double budget;
     private String naam;
     ArrayList<Product> products;
     private static Klant online;
     private Winkelwagen winkelwagen;
     private static ArrayList<Klant>klants;
+
+    public static Klant getbyUsername(String username){
+        for (Klant klant:klants) {
+            if (klant.getUsername()==username)
+                return klant;
+        }
+
+            return null;
+
+    }
 
 
     public void minusBudget(double prijs){
@@ -18,7 +32,7 @@ public class Klant extends Account{
 
     }
 
-    public Klant(String naam,String username,String password) {
+    public Klant(String naam,String username,String password) throws SQLException {
         super(username,password);
         this.naam=naam;
 

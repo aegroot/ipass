@@ -1,23 +1,30 @@
 package domain;
 
+import database.OracleBaseDao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Product {
+public class Product extends OracleBaseDao {
+    Connection conn=getConnection();
+
+
     private String omschrijving;
     private String categorie;
     private String landvherkomst;
-    private double startprijs;
+    private double kiloprijs;
     private static ArrayList<Product> products=new ArrayList<>();
 
-    public double getStartprijs() {
-        return startprijs;
+    public double getkiloprijs() {
+        return kiloprijs;
     }
 
-    public Product(String omschrijving, String categorie, String landvherkomst, double startprijs) {
+    public Product(String omschrijving, String categorie, String landvherkomst, double startprijs) throws SQLException {
         this.categorie=categorie;
         this.omschrijving=omschrijving;
         this.landvherkomst=landvherkomst;
-        this.startprijs=startprijs;
+        this.kiloprijs=startprijs;
         products.add(this);
     }
 

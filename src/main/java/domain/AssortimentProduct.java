@@ -3,21 +3,24 @@ package domain;
 public class AssortimentProduct {
     private Product product;
     private int id;
-    private double kilo;
-    private double nieuwprijs;
+    private double hoeveelheid;
+
+    public int getId() {
+        return id;
+    }
 
     public double berekenprijs(){
 
 
         assert product != null;
-        return kilo*product.getStartprijs();
+        return hoeveelheid*product.getkiloprijs();
     }
 
 
     public AssortimentProduct(Product product, int id, double kilo) {
         this.product=product;
         this.id = id;
-        this.kilo=kilo;
+        this.hoeveelheid=kilo;
     }
 
 
