@@ -19,8 +19,6 @@ public abstract class Account extends OracleBaseDao {
 
     public static void loadklanten(){
         String query="select * from klantcred";
-
-
         try {
             Connection conn = getConnection();
             Statement statement = conn.createStatement();
@@ -81,31 +79,22 @@ public abstract class Account extends OracleBaseDao {
             throwables.printStackTrace();
         }
     }
-
-
     public String getUsername() {
         return username;
     }
-
-
     public String getPassword() {
         return password;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
-
     public static boolean validate(String email, String password){
         for (Account account:accounts) {
             if (account.username==email && account.password==password){return true;}
-
         }
-
         return false;
     }
 }

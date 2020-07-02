@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Winkelwagen {
     private  ArrayList<AssortimentProduct> producten=new ArrayList<>();
-
-
     public  ArrayList<AssortimentProduct> getProducten() {
         return producten;
     }
@@ -22,7 +20,5 @@ public class Winkelwagen {
        }
        return null;
    }
-
-
    public  void addproduct(AssortimentProduct product){producten.add(product);}
 }

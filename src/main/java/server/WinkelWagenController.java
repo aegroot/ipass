@@ -11,23 +11,22 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("klanten")
+@Path("/winkelwagen")
 public class WinkelWagenController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
 public Response getShoppingcartByCustomer(){
 
-        Klant online=Klant.getOnline();
-        assert online != null;
+       // Klant online=Klant.getOnline();
+        //assert online != null;
         JsonArrayBuilder arrayBuilder= Json.createArrayBuilder();
         for (int i = 0; i <10 ; i++) {
             JsonObjectBuilder objectBuilder=Json.createObjectBuilder();
             objectBuilder.add("omschrijving","o");
             objectBuilder.add("categorie","c");
-            objectBuilder.add("land v herkomst","l");
+            objectBuilder.add("landvherkomst","l");
             objectBuilder.add("prijs","p");
             arrayBuilder.add(objectBuilder);}
-
             /*
 
         for (AssortimentProduct aproduct:online.getWinkelwagen().getProducten()) {
@@ -41,8 +40,8 @@ public Response getShoppingcartByCustomer(){
         }
 
              */
+        return javax.ws.rs.core.Response.ok(arrayBuilder.build()).build();
 
-        return javax.ws.rs.core.Response.ok(arrayBuilder).build();
     }
     @Path("{item}")
     @POST

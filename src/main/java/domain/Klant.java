@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 
 public class Klant extends Account{
-
-
     private double budget;
     private String naam;
     ArrayList<Product> products;
@@ -23,8 +21,6 @@ public class Klant extends Account{
             return null;
 
     }
-
-
     public void minusBudget(double prijs){
         if ((prijs<=budget)&&(prijs>=0)){
         budget-=prijs;}

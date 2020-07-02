@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="css/tables.css" >
-    <script >src="javascript/product.js"</script>
+    <link href="css/tables.css" rel="stylesheet" type="text/css">
+    <script src="javascript/product.js"></script>
 </head>
 <body>
 <hr id="hr1">
@@ -12,13 +12,15 @@
 <hr id="hr2">
 <div>
     <button onclick="filltableklant()">laat zien</button>
-<table onload="filltableklant()">
+<table onload="filltableklant()" id="klant">
     <tr>
         <th>omschrijving</th>
+
         <th>categorie</th>
         <th>land van herkomst</th>
         <th>prijs</th>
     </tr>
+    <tbody></tbody>
 </table>
 </div>
 <div>

@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 
-@Path("winkel")
+@Path("/winkel")
 public class TableServletwinkel {
     @GET
     @Produces(MediaType.APPLICATION_JSON)

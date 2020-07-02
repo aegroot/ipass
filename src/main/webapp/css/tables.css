@@ -5,7 +5,6 @@ tr,th,td{
     border:  1px #000000;
     border-collapse: collapse;
 }
-
 td:nth-child(odd){
     color: #808080;
 }
