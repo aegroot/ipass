@@ -20,7 +20,7 @@ public class Product extends OracleBaseDao {
         return kiloprijs;
     }
 
-    public void loadProducten() throws SQLException {
+    public static void loadProducten() throws SQLException {
         Connection conn= null;
 
             conn = getConnection();

@@ -4,6 +4,7 @@ package server;
 import domain.Klant;
 import domain.Winkel;
 import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
@@ -15,6 +16,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.security.Key;
+import java.util.AbstractMap;
 import java.util.Calendar;
 
 
@@ -38,12 +40,15 @@ public class AuthServlet {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response authenticate(@FormParam("username") String uN, @FormParam("password") String pass) {
+    public Response authenticate(@FormParam("username") String uN,
+                                 @FormParam("password") String pass) {
+
+       
+        try{
+        JsonObjectBuilder objectBuilder= Json.createObjectBuilder();
+        String rol = "";
         boolean winkelb = Winkel.validate(uN, pass);
         boolean klantb = Klant.validate(uN, pass);
-        JsonObjectBuilder objectBuilder= Json.createObjectBuilder();
-        String rol;
-
 
         if (winkelb) {
             Winkel.setWinkelonline(Winkel.getbyaccount(uN, pass));
@@ -59,6 +64,15 @@ public class AuthServlet {
             String token=createToken(uN,rol);
             return Response.ok(objectBuilder).build();
         }
-        return Response.status(Response.Status.NOT_FOUND).build();
+
+        if (rol==""){throw new IllegalArgumentException("no user found");}
+        String token=createToken(uN, rol);
+        AbstractMap.SimpleEntry<String,String> JWT=new AbstractMap.SimpleEntry<>("JWT",token);
+        return Response.ok(JWT).build();}
+        catch (JwtException |IllegalArgumentException e)
+        {return Response.status(Response.Status.UNAUTHORIZED).build();}
+
+
     }
+    
 }

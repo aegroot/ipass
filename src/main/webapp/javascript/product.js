@@ -1,3 +1,13 @@
+const toBase64 = file => new Promise((resolve, reject) => {
+    if (file === undefined) resolve("");
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.addEventListener("load", () => resolve(reader.result));
+    reader.addEventListener("error", error => reject(error));
+});
+
+
 function  test() {
     console.log('ok');
 }
@@ -90,10 +100,14 @@ async function filltableklant() {
 }
 
 function validate() {
-    const formData = new FormData(document.querySelector("#auth"));
+    var formData = new FormData(document.querySelector("#auth"));
     var encData=new URLSearchParams(formData.entries());
     fetch("restservices/auth" ,{method:"POST",body:encData})
-        .then(response=Promise.all([response.status, response.json()]))
+       // .then(response=Promise.all([response.status, response.json()]))
+        .then(function (response) {
+            if (response.ok){response.json()}
+            else throw "wrong username/password";
+        })
     .then(function ([status,myJson]) {
         if (status===404){
             document.querySelector("#ans").append("foute credentials")
