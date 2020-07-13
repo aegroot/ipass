@@ -2,17 +2,16 @@ package domain;
 
 public class AssortimentProduct {
     private Product product;
-    private int id;
-    private double hoeveelheid;
+    private final int id;
+    private final double hoeveelheid;
 
     public int getId() {
         return id;
     }
 
     public double berekenprijs(){
-
-
         assert product != null;
+        assert hoeveelheid !=0;
         return hoeveelheid*product.getkiloprijs();
     }
 

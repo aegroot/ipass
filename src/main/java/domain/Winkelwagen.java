@@ -8,9 +8,12 @@ public class Winkelwagen {
         return producten;
     }
 
-    public void remproduct(AssortimentProduct product){
+    public boolean remproduct(AssortimentProduct product){
         if (producten.contains(product)){
-        product=null;}
+        product=null;
+        return true;
+        }
+        return false;
    }
    public AssortimentProduct getByid(int id){
        for (AssortimentProduct product:producten) {
@@ -20,5 +23,9 @@ public class Winkelwagen {
        }
        return null;
    }
-   public  void addproduct(AssortimentProduct product){producten.add(product);}
+
+   public boolean addproduct(AssortimentProduct product){
+       if (producten.contains(product)){producten.add(product); return true;}
+   else return false;
+    }
 }

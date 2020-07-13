@@ -33,9 +33,6 @@ public class Winkel extends Account {
 
     public void addProduct(AssortimentProduct assortimentProduct){producten.add(assortimentProduct);}
 
-
-
-
     public static Winkel getbyaccount(String username,String password){
         for (Winkel winkel:winkels) {
             if((winkel.getUsername()==username)&&(winkel.password==password)){

@@ -11,6 +11,7 @@ const toBase64 = file => new Promise((resolve, reject) => {
 function  test() {
     console.log('ok');
 }
+/*
 function product(omschrijving,categorie,landvherkomst,prijs) {
     this.omschrijving=omschrijving;
     this.categorie=categorie;
@@ -29,8 +30,11 @@ function product(omschrijving,categorie,landvherkomst,prijs) {
             return [naam,password];
         }}
 
+ */
+
         //wordt meerdere keren gebruikt
 function filltable(dat,id){
+    console.log("klant")
     //test
 /*
     for (var j = 0; j <10; j++) {
@@ -61,11 +65,13 @@ function filltable(dat,id){
     let cell2;
     let cell3;
     let cell4;
+    let cell5;
+    let button;
     console.log(dat);
     var table=document.getElementById(id.toString());
     for (var i = 0; i < dat.length; i++) {
         //maakt een rij, koppelt er cellen aan,en vult het met data
-        row=table.insertRow(-1)
+        row=table.insertRow();
         cell1=row.insertCell(0);
         cell2=row.insertCell(1);
         cell3=row.insertCell(2);
@@ -75,10 +81,28 @@ function filltable(dat,id){
         //textnode2 = document.createTextNode(data[i].categorie);
        // textnode3 = document.createTextNode(data[i].landvherkomst);
        // textnode4 = document.createTextNode(data[i].prijs);
-        cell1.innerHTML=dat[i].omschrijving.string
-        cell2.innerHTML=dat[i].categorie.string;
-        cell3.innerHTML=dat[i].landvherkomst.string;
-        cell4.innerHTML=dat[i].prijs.string;
+        /*
+        if (id === "winkel"){
+            button=document.createElement("button");
+            cell5=row.insertCell(4);
+            button.addEventListener("click", addToCart(dat[i].id))
+            //onclick(addToCart(dat[i].id));
+            button.innerHTML="voegtoe"
+            console.log("winkel")
+        }
+         if (id === "klant"){
+            button=document.createElement("button");
+            cell5=row.insertCell(4);
+            button.addEventListener("click",removeFromCart(dat[i].id) )
+            //onclick(removeFromCart(dat[i].id));
+            button.innerHTML="haal weg"
+             console.log("klant")
+        }
+         */
+        cell1.innerHTML=dat[i]["omschrijving"].string
+        cell2.innerHTML=dat[i]["categorie"].string;
+        cell3.innerHTML=dat[i]["landvherkomst"].string;
+        cell4.innerHTML=dat[i]["prijs"].string;
         table.append(row);
     }
         }
@@ -89,38 +113,76 @@ async function filltablewinkel() {
             filltable(data,"winkel")})
 
 }
-
-
 async function filltableklant() {
     var list = await fetch("restservices/winkelwagen", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
         .then(function (data) {
             filltable(data[1],"klant");
-
         })
 }
+async function removeFromCart(id) {
+    await fetch("restservices/winkelwagen"+id, {method: "DELETE"}).then(response => Promise.all([response.status]))
 
-function validate() {
-    var formData = new FormData(document.querySelector("#auth"));
-    var encData=new URLSearchParams(formData.entries());
-    fetch("restservices/auth" ,{method:"POST",body:encData})
-       // .then(response=Promise.all([response.status, response.json()]))
-        .then(function (response) {
-            if (response.ok){response.json()}
-            else throw "wrong username/password";
-        })
-    .then(function ([status,myJson]) {
-        if (status===404){
-            document.querySelector("#ans").append("foute credentials")
-        }
 
-        if (status===200){
-            if (myJson.naam==="winkel"){window.location.href=("menuwinkel.html")}
-            if (myJson.naam==="klant"){window.location.href=("menuklant.html")}
-        }
+}
+async function addToCart(id) {
+    await fetch("restservices/winkelwagen"+id, {method: "PUT"}).then(response => Promise.all([response.status]))
+        .then(function (status){
+        if(status.ok){console.log('succes')}
+        if(status === 304){console.log('error')}
     })
-
 }
 
+async function getbudget() {
+    await fetch("restservices/getbudget", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
+        .then(function (data) {
+            const budget=data[1].budget;
+            var paragraphElement=document.querySelector("p");
+            paragraphElement.innerText=budget;
+        })
+
+}
+async function rekenAf() {
+    await fetch("restservices/rekenaf", {method: "POST"}).then(response => Promise.all([response.status]))
+        .then(function (status){
+            if(status.ok){console.log('succes')}
+            if(status.error()){console.log('error')
+            }
+        }
+            )
+}
+
+async function checkLogin() {
+    await fetch("restservices/checklogin", {method: "POST"}).then(response => Promise.all([response.status]))
+        .then(function (status) {
+                if (status.ok) {
+                    console.log('succes')
+                }
+                if (status.error()) {
+                    console.log('error')
+                }
+            }
+        )
+}
+
+async function validate() {
+    var formData = new FormData(document.querySelector("#auth"));
+    var encData = new URLSearchParams(formData.entries());
+    await fetch("restservices/auth", {method: "POST", body: encData})
+         .then(response=Promise.all([response.status, response.json()]))
+        .then(function ([data]) {
+            if (data[0] === 404) {
+                document.querySelector("#ans").innerHTML("foute credentials")
+            }
+            if (data[0] === 200) {
+                if (data[1].naam === "winkel") {
+                    window.location.href = ("menuwinkel.html")
+                }
+                if (data[1].naam === "klant") {
+                    window.location.href = ("menuklant.html")
+                }
+            }
+        })
+}
 function addCustomer() {
     const formData = new FormData(document.querySelector("#register"));
     const encData = new URLSearchParams(formData.entries());

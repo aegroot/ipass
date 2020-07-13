@@ -12,6 +12,6 @@ public class OracleBaseDao {
         //connection.close();
         return DriverManager.getConnection(jdbcUrl,dbusername,dbpassword);
     }
-    public void closeConnection() throws SQLException {getConnection().close();}
+    public static void closeConnection() throws SQLException {getConnection().close();}
 }
 

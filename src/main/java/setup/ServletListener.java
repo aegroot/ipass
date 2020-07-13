@@ -14,13 +14,16 @@ public class ServletListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         try {
+            //inladen casus
             Product.loadProducten();
             Account.loadklanten();
             Account.loadwinkels();
+
+            //voor testen
+            Winkel.setWinkelonline(Winkel.getwinkelbycode("XYZ01"));
+            Klant.setOnline(Klant.getbyUsername("gast"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
-
     }
 }

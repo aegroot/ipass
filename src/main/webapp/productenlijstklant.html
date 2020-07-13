@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="css/tables.css" rel="stylesheet" type="text/css">
-    <script src="javascript/product.js"></script>
+    <script src="javascript/product.js">
+    </script>
 </head>
 <body>
 <hr id="hr1">
 <h1 id="headertext">producten</h1>
 <hr id="hr2">
-<div>
-    <button onclick="filltableklant()">laat zien</button>
-<table onload="filltableklant()" id="klant">
+<div class="table">
+    <section class="budget">
+        <p class="budget"></p>
+    </section>
+<table id="klant" class="table">
     <tr>
         <th>omschrijving</th>
-
         <th>categorie</th>
         <th>land van herkomst</th>
         <th>prijs</th>
@@ -24,6 +26,8 @@
 </table>
 </div>
 <div>
+    <button onclick="filltableklant()">laad in!</button>
+    <button><a href="menuklant.html">menu</a></button>
 <label>
     <button hidden> afrekenen</button>
 </label></div>

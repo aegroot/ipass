@@ -28,10 +28,11 @@ public abstract class Account extends OracleBaseDao {
                 String password=resultSet.getString("password");
                 String naam=resultSet.getString("naam");
                 new Klant(naam,username,password);
-            }
+            } closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
     }
 
     public static void loadwinkels(){
@@ -74,9 +75,10 @@ public abstract class Account extends OracleBaseDao {
                     winkel.addProduct(new AssortimentProduct(new Product(omschrijving, categorie, landvherkomst, kiloprijs),aproductid,hoeveelheid));
                 }
 
-            }
+            }closeConnection();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+
         }
     }
     public String getUsername() {

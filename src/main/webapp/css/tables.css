@@ -26,7 +26,8 @@ td:nth-child(even){
 #hr1,#hr2{
     color: black;
 }
-div{margin: 100px;
+div.table{
+    margin: 100px;
 padding: 100px;
     background-color: burlywood;
 }
@@ -39,4 +40,13 @@ padding: 100px;
     text-align: center;
     background-color: orange;
     width: 100%;
+    height: 10%;
+}
+div.header{
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    background-color: orange;
+    height: 10%;
+   
 }

@@ -33,8 +33,7 @@ public class TableServletwinkel {
             object.add("prijs",aproduct.berekenprijs());
             builder.add(object);
         }
-        return javax.ws.rs.core.Response.ok(builder).build();
-
+        return Response.ok(builder).build();
     }
     @Path("{winkelid}")
     @GET
