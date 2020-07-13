@@ -90,6 +90,7 @@ function filltable(dat,id){
             button.innerHTML="voegtoe"
             console.log("winkel")
         }
+
          if (id === "klant"){
             button=document.createElement("button");
             cell5=row.insertCell(4);
