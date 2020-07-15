@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class OracleBaseDao {
-    static String jdbcUrl="jdbc:oracle:thin:@localhost:1521:orcl";
-    static String dbusername="IPASS";
-    static String dbpassword="ipass";
+    static String jdbcUrl="jdbc:postgresql://localhost:5432/ipass";
+    static String dbusername="postgres";
+    static String dbpassword="vj6ncz";
     public static Connection getConnection() throws SQLException {
         //connection.close();
         return DriverManager.getConnection(jdbcUrl,dbusername,dbpassword);

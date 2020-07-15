@@ -68,19 +68,27 @@ function filltable(dat,id){
     let cell5;
     let button;
     console.log(dat);
-    var table=document.getElementById(id.toString());
+    var table=document.querySelector("tbody");
+    var data=document.createElement("tbody");
     for (var i = 0; i < dat.length; i++) {
         //maakt een rij, koppelt er cellen aan,en vult het met data
+        row=document.createElement("tr");
         row=table.insertRow();
-        cell1=row.insertCell(0);
-        cell2=row.insertCell(1);
-        cell3=row.insertCell(2);
-        cell4=row.insertCell(3);
+        //cell1=row.insertCell(0);
+        cell1=document.createElement("td");
+        cell2=document.createElement("td");
+        cell3=document.createElement("td");
+        cell4=document.createElement("td");
+        //cell2=row.insertCell(1);
+        //cell3=row.insertCell(2);
+       // cell4=row.insertCell(3);
         //row = document.createElement("tr");
        //textnode1 = document.createTextNode(data[i].omschrijving);
         //textnode2 = document.createTextNode(data[i].categorie);
        // textnode3 = document.createTextNode(data[i].landvherkomst);
        // textnode4 = document.createTextNode(data[i].prijs);
+
+
         /*
         if (id === "winkel"){
             button=document.createElement("button");
@@ -90,6 +98,7 @@ function filltable(dat,id){
             button.innerHTML="voegtoe"
             console.log("winkel")
         }
+
          if (id === "klant"){
             button=document.createElement("button");
             cell5=row.insertCell(4);
@@ -103,8 +112,9 @@ function filltable(dat,id){
         cell2.innerHTML=dat[i]["categorie"].string;
         cell3.innerHTML=dat[i]["landvherkomst"].string;
         cell4.innerHTML=dat[i]["prijs"].string;
-        table.append(row);
+        data.append(row);
     }
+    table.innerHTML=data;
         }
 
 async function filltablewinkel() {
@@ -133,7 +143,7 @@ async function addToCart(id) {
 }
 
 async function getbudget() {
-    await fetch("restservices/getbudget", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
+    await fetch("restservices/budget", {method: "GET"}).then(response => Promise.all([response.status, response.json()]))
         .then(function (data) {
             const budget=data[1].budget;
             var paragraphElement=document.querySelector("p");
