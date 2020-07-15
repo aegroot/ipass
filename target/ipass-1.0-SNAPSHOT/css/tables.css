@@ -1,9 +1,8 @@
 body{background-color: lightblue}
 table{align-content: center}
 
-tr,th,td{
+tr{
     border:  1px #000000;
-    border-collapse: collapse;
 }
 td:nth-child(odd){
     color: #808080;

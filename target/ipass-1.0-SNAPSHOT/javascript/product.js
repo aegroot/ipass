@@ -69,19 +69,20 @@ function filltable(dat,id){
     let button;
     console.log(dat);
     var table=document.querySelector("tbody");
-    var data=document.createElement("tbody");
+   // var data=document.createElement("tbody");
     for (var i = 0; i < dat.length; i++) {
         //maakt een rij, koppelt er cellen aan,en vult het met data
-        row=document.createElement("tr");
+       // row=document.createElement("tr");
         row=table.insertRow();
-        //cell1=row.insertCell(0);
-        cell1=document.createElement("td");
-        cell2=document.createElement("td");
-        cell3=document.createElement("td");
-        cell4=document.createElement("td");
-        //cell2=row.insertCell(1);
-        //cell3=row.insertCell(2);
-       // cell4=row.insertCell(3);
+
+        //cell1=document.createElement("td");
+        //cell2=document.createElement("td");
+        //cell3=document.createElement("td");
+       // cell4=document.createElement("td");
+        cell1=row.insertCell(0);
+        cell2=row.insertCell(1);
+        cell3=row.insertCell(2);
+        cell4=row.insertCell(3);
         //row = document.createElement("tr");
        //textnode1 = document.createTextNode(data[i].omschrijving);
         //textnode2 = document.createTextNode(data[i].categorie);
@@ -98,7 +99,7 @@ function filltable(dat,id){
             button.innerHTML="voegtoe"
             console.log("winkel")
         }
-
+ */
          if (id === "klant"){
             button=document.createElement("button");
             cell5=row.insertCell(4);
@@ -107,14 +108,14 @@ function filltable(dat,id){
             button.innerHTML="haal weg"
              console.log("klant")
         }
-         */
+
         cell1.innerHTML=dat[i]["omschrijving"].string
         cell2.innerHTML=dat[i]["categorie"].string;
         cell3.innerHTML=dat[i]["landvherkomst"].string;
         cell4.innerHTML=dat[i]["prijs"].string;
-        data.append(row);
+        table.append(row);
     }
-    table.innerHTML=data;
+    //table.innerHTML=data;
         }
 
 async function filltablewinkel() {
