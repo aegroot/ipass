@@ -99,7 +99,7 @@ function filltable(dat,id){
 */
          if (id === "klant"){
             button=document.createElement("button");
-            cell5=row.insertCell(4);
+            cell5=row.insertCell(-1);
             button.addEventListener("click",removeFromCart(dat[i].id) )
             //onclick(removeFromCart(dat[i].id));
             button.textContent="haal weg"

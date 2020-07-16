@@ -10,6 +10,9 @@ td:nth-child(odd){
 td:nth-child(even){
     color: #447474;
 }
+tbody{padding: 5px;
+    color: black;
+}
 #loginbox {
     position: absolute;
     width: 400px;
