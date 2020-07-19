@@ -63,42 +63,36 @@ function filltable(dat,id){
     //let textnode4;
 
 
-     let cell1=document.createElement("td");
-    let cell2=document.createElement("td");
-    let cell3=document.createElement("td");
-     let cell4=document.createElement("td");
-    let cell5=document.createElement("td");
-    var button;
+     let cell1;
+    let cell2;
+    let cell3;
+     let cell4;
+    let cell5;
+    let button;
     console.log(dat);
+
     var table=document.querySelector("tbody");
    // var data=document.createElement("tbody");
     for (var i = 0; i < dat.length; i++) {
         //maakt een rij, koppelt er cellen aan,en vult het met data
        // row=document.createElement("tr");
         row=table.insertRow();
-        /*
-       cell1=row.insertCell(0);
-       cell2=row.insertCell(1);
-       cell3=row.insertCell(2);
-       cell4=row.insertCell(3);
+
+
        //row = document.createElement("tr");
       //textnode1 = document.createTextNode(data[i].omschrijving);
        //textnode2 = document.createTextNode(data[i].categorie);
       // textnode3 = document.createTextNode(data[i].landvherkomst);
       // textnode4 = document.createTextNode(data[i].prijs);
 
-       /*
-       (id === "winkel"){
-           button=document.createElement("button");
-           cell5=row.insertCell(4);
-           button.addEventListener("click", addToCart(dat[i].id))
-           //onclick(addToCart(dat[i].id));
-           button.innerHTML="voegtoe"
-           console.log("winkel")
-       }
-*/
 
 
+
+
+        cell1=row.insertCell(0);
+        cell2=row.insertCell(1);
+        cell3=row.insertCell(2);
+        cell4=row.insertCell(3);
         cell1.textContent=dat[i]["omschrijving"].string
         cell2.textContent=dat[i]["categorie"].string;
         cell3.textContent=dat[i]["landvherkomst"].string;
@@ -106,25 +100,22 @@ function filltable(dat,id){
         if (id === "klant"){
             button=document.createElement("button");
             button.onclick = removeFromCart(dat[i].id)
+            button.textContent="haal weg"
+            cell5= row.insertCell(4)
             cell5.appendChild(button);
-            row.appendChild(cell5)
-            //function(){console.log('here be dragons');return false;
-
-            /*
-           cell5=row.insertCell(-1);
-           button.onclick(removeFromCart(dat[i].id));
-           button.textContent="haal weg"
-             */
+            console.log("klant")
 
         }
+       else if (id === "winkel"){
+            button=document.createElement("button");
+            cell5=row.insertCell(4);
+            button.addEventListener("click", )
+            button.onclick =addToCart(dat[i].id)
+            button.textContent="voegtoe"
+            console.log("winkel")
+        }
+        table.append(row);
 
-        row.appendChild(cell1);
-        row.appendChild(cell2);
-        row.appendChild(cell3);
-        row.appendChild(cell4);
-        row.appendChild(cell4);
-
-        table.appendChild(row);
     }
         }
 
