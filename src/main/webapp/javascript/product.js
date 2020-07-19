@@ -99,23 +99,29 @@ function filltable(dat,id){
 */
          if (id === "klant"){
              button=document.createElement("button");
+             button.onclick = removeFromCart(dat[i].id)
+                 //function(){console.log('here be dragons');return false;
+
+             /*
             cell5=row.insertCell(-1);
             button.onclick(removeFromCart(dat[i].id));
             button.textContent="haal weg"
+              */
 
-             console.log("klant")
         }
 
         cell1.textContent=dat[i]["omschrijving"].string
         cell2.textContent=dat[i]["categorie"].string;
         cell3.textContent=dat[i]["landvherkomst"].string;
         cell4.textContent=dat[i]["prijs"].string;
+        cell5.appendChild(button);
         row.appendChild(cell1);
         row.appendChild(cell2);
         row.appendChild(cell3);
         row.appendChild(cell4);
         row.appendChild(cell4);
-        table.appendChild(button);
+        row.appendChild(cell5)
+
         table.append(row);
     }
     //table.innerHTML=data;
@@ -134,7 +140,7 @@ async function filltableklant() {
         })
 }
 async function removeFromCart(id) {
-    await fetch("restservices/winkelwagen/${id}", {method: "DELETE"}).then(response => Promise.all([response.status]))
+    await fetch('restservices/winkelwagen/${id}', {method: "DELETE"}).then(response => Promise.all([response.status]))
 
 
 }
