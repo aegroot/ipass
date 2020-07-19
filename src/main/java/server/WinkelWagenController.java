@@ -48,7 +48,7 @@ public Response getShoppingcartByCustomer(){
         return javax.ws.rs.core.Response.ok(arrayBuilder.build()).build();
 
     }
-    @Path("/{id}")
+    @Path("{id}")
     @DELETE
     public Response deleteItem(@PathParam("id")int id){
         Klant klant=Klant.getOnline();
@@ -59,7 +59,7 @@ public Response getShoppingcartByCustomer(){
 
 
 
-    @Path("/{id}")
+    @Path("{id}")
     @PUT
     public Response additem(@PathParam("id")int id){
         Klant klant=Klant.getOnline();
