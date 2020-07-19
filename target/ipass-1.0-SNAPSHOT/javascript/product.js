@@ -97,37 +97,35 @@ function filltable(dat,id){
            console.log("winkel")
        }
 */
-         if (id === "klant"){
-             button=document.createElement("button");
-             button.onclick = function(){
-                 console.log('here be dragons');return false;
 
-             }
-             /*
-
-            cell5=row.insertCell(-1);
-            button.onclick(removeFromCart(dat[i].id));
-            button.textContent="haal weg"
-
-              */
-
-        }
 
         cell1.textContent=dat[i]["omschrijving"].string
         cell2.textContent=dat[i]["categorie"].string;
         cell3.textContent=dat[i]["landvherkomst"].string;
         cell4.textContent=dat[i]["prijs"].string;
-        cell5.appendChild(button);
+        if (id === "klant"){
+            button=document.createElement("button");
+            button.onclick = removeFromCart(dat[i].id)
+            cell5.appendChild(button);
+            row.appendChild(cell5)
+            //function(){console.log('here be dragons');return false;
+
+            /*
+           cell5=row.insertCell(-1);
+           button.onclick(removeFromCart(dat[i].id));
+           button.textContent="haal weg"
+             */
+
+        }
+
         row.appendChild(cell1);
         row.appendChild(cell2);
         row.appendChild(cell3);
         row.appendChild(cell4);
         row.appendChild(cell4);
-        row.appendChild(cell5)
 
-        table.append(row);
+        table.appendChild(row);
     }
-    //table.innerHTML=data;
         }
 
 async function filltablewinkel() {
@@ -144,6 +142,7 @@ async function filltableklant() {
 }
 async function removeFromCart(id) {
     await fetch('restservices/winkelwagen/${id}', {method: "DELETE"}).then(response => Promise.all([response.status]))
+    console.log(id);
 
 
 }
