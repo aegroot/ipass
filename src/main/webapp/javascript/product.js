@@ -68,7 +68,7 @@ function filltable(dat,id){
     let cell3=document.createElement("td");
      let cell4=document.createElement("td");
     let cell5=document.createElement("td");
-    let button;
+    var button;
     console.log(dat);
     var table=document.querySelector("tbody");
    // var data=document.createElement("tbody");
@@ -98,11 +98,11 @@ function filltable(dat,id){
        }
 */
          if (id === "klant"){
-            button=document.createElement("button");
+             button=document.createElement("button");
             cell5=row.insertCell(-1);
-            button.addEventListener("click",removeFromCart(dat[i].id) )
-            //onclick(removeFromCart(dat[i].id));
+            button.onclick(removeFromCart(dat[i].id));
             button.textContent="haal weg"
+
              console.log("klant")
         }
 
@@ -115,6 +115,7 @@ function filltable(dat,id){
         row.appendChild(cell3);
         row.appendChild(cell4);
         row.appendChild(cell4);
+        table.appendChild(button);
         table.append(row);
     }
     //table.innerHTML=data;
@@ -133,7 +134,7 @@ async function filltableklant() {
         })
 }
 async function removeFromCart(id) {
-    await fetch("restservices/winkelwagen"+id, {method: "DELETE"}).then(response => Promise.all([response.status]))
+    await fetch("restservices/winkelwagen/${id}", {method: "DELETE"}).then(response => Promise.all([response.status]))
 
 
 }

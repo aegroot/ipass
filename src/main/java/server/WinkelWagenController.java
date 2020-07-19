@@ -48,24 +48,24 @@ public Response getShoppingcartByCustomer(){
         return javax.ws.rs.core.Response.ok(arrayBuilder.build()).build();
 
     }
-    @Path("{id}")
+    @Path("/{id}")
     @DELETE
     public Response deleteItem(@PathParam("id")int id){
         Klant klant=Klant.getOnline();
         Winkelwagen winkelwagen=klant.getWinkelwagen();
         winkelwagen.remproduct(winkelwagen.getByid(id));
-        return null;
+        return Response.ok().build();
     }
 
 
 
     @Path("{id}")
     @PUT
-    public Response additem(@PathParam("id")int id){
+    public Response addItem(@PathParam("id")int id){
         Klant klant=Klant.getOnline();
         Winkelwagen winkelwagen=klant.getWinkelwagen();
         boolean bool=winkelwagen.addproduct(winkelwagen.getByid(id));
-        if (bool=true){
+        if (bool){
             return Response.ok().build();
 
         }
