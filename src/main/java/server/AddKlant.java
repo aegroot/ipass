@@ -17,12 +17,12 @@ public class AddKlant extends OracleBaseDao {
     @PUT
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response add(@FormParam("name")String naam,@FormParam("email")String email,@FormParam("password")String password){
+    public Response add(@FormParam("name")String naam,
+                        @FormParam("email")String email,
+                        @FormParam("password")String password){
         try {
             new Klant(naam,email,password);
             //Connection conn=getConnection();
-
-
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();

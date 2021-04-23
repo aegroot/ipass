@@ -70,25 +70,11 @@ function filltable(dat,id){
     let cell5;
     let button;
     console.log(dat);
-
     var table=document.querySelector("tbody");
-   // var data=document.createElement("tbody");
     for (var i = 0; i < dat.length; i++) {
         //maakt een rij, koppelt er cellen aan,en vult het met data
        // row=document.createElement("tr");
         row=table.insertRow();
-
-
-       //row = document.createElement("tr");
-      //textnode1 = document.createTextNode(data[i].omschrijving);
-       //textnode2 = document.createTextNode(data[i].categorie);
-      // textnode3 = document.createTextNode(data[i].landvherkomst);
-      // textnode4 = document.createTextNode(data[i].prijs);
-
-
-
-
-
         cell1=row.insertCell(0);
         cell2=row.insertCell(1);
         cell3=row.insertCell(2);
@@ -141,7 +127,8 @@ async function addToCart(id) {
     await fetch("restservices/winkelwagen"+id, {method: "PUT"}).then(response => Promise.all([response.status]))
         .then(function (status){
         if(status.ok){console.log('succes')}
-        if(status === 304){console.log('error')}
+        else if(status === 304){console.log('error')}
+
     })
 }
 
